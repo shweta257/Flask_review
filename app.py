@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
-import os
+import os, sys
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -53,14 +53,19 @@ def edit(i):
         task = Task.query.get_or_404(i)
         if task is None:
             return redirect('/')
-        return render_template('tasks.html', task=task)
+        return render_template('task_edit.html', task=task)
 
 
-
-def main():
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-    manager.run('localhost', 8000, debug=False)
 
 if __name__ == '__main__':
-    main()
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+    if len(sys.argv) >= 2 and sys.argv[1] == 'init':
+        db.create_all()
+        db.session.commit()
+        task = Task(message="This is my first task",date="04/04/2017")
+        db.session.add(task)
+        db.session.commit()
+    app.run('localhost', 8000, debug=True)
