@@ -1,0 +1,9 @@
+<html>
+<h1>Welcome to Taskr</h1>
+<h2>Tasks</h2>
+<ul>
+{% for task in tasks %}
+<li>{{ task }}<form action="/delete/0/"><input type="submit" name="delete"></input></form></li>
+{% endfor %}
+</ul>
+</html>
