@@ -1,5 +1,6 @@
 <html>
-<h1>Welcome to Tasks</h1>
+<title>Taskr</title>
+<h1>Welcome to Taskr of {{ current_user.name }} </h1>
 <h2>Edit Task: {{ task.id }}</h2>
 <ul>
 <form action="/edit/{{ task.id }}/" method="post" >
