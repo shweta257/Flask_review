@@ -34,7 +34,7 @@ class Task(db.Model):
     message = db.Column(db.Text)
     date = db.Column(db.Text)
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login/", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
         username = request.form['username']
