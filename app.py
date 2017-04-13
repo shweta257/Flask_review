@@ -28,9 +28,9 @@ def delete(i):
     db.session.commit()
     return redirect('/')
 
-@app.route('/add', methods=['POST'])
+@app.route('/add/', methods=['POST'])
 def add():
-    if request.methods == 'POST':
+    if request.method == 'POST':
         message = request.form.get('message')
         date  = request.form.get('date')
         task = Task(message = message, date = date)

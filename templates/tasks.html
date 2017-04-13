@@ -1,9 +1,21 @@
 <html>
-<h1>Welcome to Taskr</h1>
+<h1>Welcome to Tasks</h1>
 <h2>Tasks</h2>
 <ul>
 {% for task in tasks %}
-<li>{{ task }}<form action="/delete/0/"><input type="submit" name="delete"></input></form></li>
+<li>{{ task.id }} &nbsp; {{ task.message }} &nbsp; {{ task.date }} &nbsp; <form action="/edit/{{ task.id }}/"><input type="submit" value="EDIT"></input></form> <form action="/delete/{{ task.id }}/"><input type="submit" value="DELETE"></input></form>
 {% endfor %}
+
+
+Add a task:
+<form action="/add/" method="post" >
+  Task:&nbsp;
+  <input type="" name="message" value="message">
+  <br>
+  Date:
+  <input type="date" name="date" value="">
+  <br>
+  <input type="submit" value="Add">
+</form>
 </ul>
 </html>

@@ -1,0 +1,15 @@
+<html>
+<h1>Welcome to Tasks</h1>
+<h2>Edit Task: {{ task.id }}</h2>
+<ul>
+<form action="/edit/{{ task.id }}/" method="post" >
+  Task:&nbsp;
+  <input type="" name="message" value={{ task.message }}>
+  <br>
+  Date:
+  <input type="date" name="date" placeholder={{ task.date }} value={{ task.date }}>
+  <br>
+  <input type="submit" value="Edit">
+</form>
+</ul>
+</html>
